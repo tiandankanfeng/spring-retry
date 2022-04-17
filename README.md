@@ -14,11 +14,12 @@ It includes a declarative example and an imperative example.
 
 The following example shows how to use Spring Retry in its declarative style:
 
+states the same bean Service many times.
 ```java
 @Configuration
 @EnableRetry
 public class Application {
-
+    // problem
     @Bean
     public Service service() {
         return new Service();
@@ -26,6 +27,7 @@ public class Application {
 
 }
 
+// problem
 @Service
 class Service {
     @Retryable(RemoteAccessException.class)

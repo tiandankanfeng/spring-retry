@@ -423,10 +423,12 @@ public class RetryTemplateBuilder {
 		// Retry policy
 
 		if (this.baseRetryPolicy == null) {
+			// 默认下会去尝试三次
 			this.baseRetryPolicy = new MaxAttemptsRetryPolicy();
 		}
 
 		CompositeRetryPolicy finalPolicy = new CompositeRetryPolicy();
+		// 将重试策略以及异常触发组合到了一块
 		finalPolicy.setPolicies(new RetryPolicy[] { this.baseRetryPolicy,
 				new BinaryExceptionClassifierRetryPolicy(exceptionClassifier) });
 		retryTemplate.setRetryPolicy(finalPolicy);
